@@ -5,7 +5,7 @@
                 <router-link class="header" :to="{name:'Home'}">HiveBlogs</router-link>
             </div>
             <div class="nav-links">
-                <ul>
+                <ul v-show="!mobile">
                     <router-link class="link" to="#">Home</router-link>
                     <router-link class="link" to="#">Blogs</router-link>
                     <router-link class="link" to="#">Create Post</router-link>
@@ -13,9 +13,9 @@
                 </ul>
             </div>
         </nav>
-        <menuIcon class="menu-icon"/>
+        <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile"/>
         <transition name="mobile-nav">
-            <ul class="mobile-nav">
+            <ul class="mobile-nav" v-show="mobileNav">
                 <router-link class="link" to="#">Home</router-link>
                 <router-link class="link" to="#">Blogs</router-link>
                 <router-link class="link" to="#">Create Post</router-link>
@@ -39,6 +39,10 @@ import menuIcon from "../assets/Icons/bars-regular.svg"
                 windowWidth: null,
             };
         },
+        created() {
+            window.addEventListener('resize', this.checkScreen);
+            this.checkScreen();
+        },
         methods: {
             checkScreen() {
                 this.windowWidth = window.innerWidth;
@@ -49,6 +53,10 @@ import menuIcon from "../assets/Icons/bars-regular.svg"
                 this.mobile = false;
                 this.mobileNav = false;
                 return;
+            },
+
+            toggleMobileNav() {
+                this.mobileNav = !this.mobileNav;
             }
         },
     }
@@ -132,7 +140,7 @@ header {
 
     .link {
         padding: 15px 0;
-        color: #fff;
+        color: #000;
     }
 }
 </style>
