@@ -73,11 +73,13 @@ header {
         font-weight: 500;
         padding: 0 8px;
         transition: .3s color ease;
+
+        &:hover {
+            color: #1eb8b8;
+        }
     }
 
-    &:hover {
-        color: #1eb8b8;
-    }
+   
 
     nav {
         display: flex;
@@ -136,11 +138,11 @@ header {
         background-color: #303030;
         top: 0;
         left: 0;
-    }
 
-    .link {
-        padding: 15px 0;
-        color: #000;
+        .link {
+            padding: 15px 0;
+            color: #000;
+        }
     }
 }
 </style>
